@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дискомфорт — твоя точка роста</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#111111;
+    --off-white:#f6f4ef;
+    --white:#ffffff;
+    --grey:#8a8681;
+    --grey-line:rgba(17,17,17,0.14);
+    --crimson:#a3272b;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:transparent;
+    color:var(--black);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- FIXED MOUNTAIN SCENE BACKDROP ---------- */
+  .scene-bg{
+    position:fixed; inset:0; z-index:-2; overflow:hidden;
+    background:
+      radial-gradient(ellipse 55% 38% at 50% 10%, rgba(168,172,182,0.45), rgba(168,172,182,0) 62%),
+      linear-gradient(180deg, #2c2f35 0%, #23262b 38%, #17181b 72%, #0f1011 100%);
+  }
+  .scene-bg svg{position:absolute; bottom:0; left:0; width:100%; height:58%; display:block;}
+  .scene-fade{
+    position:fixed; inset:0; z-index:-1;
+    background:linear-gradient(180deg, rgba(15,16,17,0) 0%, rgba(15,16,17,0.25) 70%, rgba(15,16,17,0.55) 100%);
+  }
+  h1,h2,h3,.serif{font-family:'Bodoni Moda', serif; margin:0;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
+  a{color:inherit;}
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{
+    position:relative; z-index:1;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 28px; max-width:1040px; margin:0 auto;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#c9c7c2;
+  }
+  .masthead .issue{font-family:'Bodoni Moda', serif; font-style:italic; font-size:14px; color:var(--off-white);}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative; z-index:1;}
+  .hero-grid{display:grid; grid-template-columns:1fr 1fr; min-height:640px; align-items:center;}
+  .hero-photo{
+    position:relative; overflow:hidden; border-radius:6px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(246,244,239,0.08);
+    margin:0 48px;
+  }
+  .hero-photo img{width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) contrast(1.08);}
+  .hero-text{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:60px 64px;
+  }
+  .kicker{
+    font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:#e07872;
+    margin-bottom:22px; font-weight:600;
+  }
+  .hero h1{
+    font-size:clamp(38px, 4.4vw, 58px);
+    font-weight:500;
+    line-height:1.02;
+    letter-spacing:-0.01em;
+    color:var(--off-white);
+  }
+  .hero h1 em{font-style:italic; color:#e07872;}
+  .hero .sub{
+    margin-top:26px; font-size:17px; color:#c9c7c2; max-width:420px; font-weight:400;
+  }
+  .cta-row{margin-top:38px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; background:var(--black); color:var(--off-white);
+    font-family:'Inter', sans-serif; font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+    font-weight:600; padding:16px 30px; text-decoration:none; border:1px solid var(--black);
+    transition:background .15s ease, color .15s ease;
+  }
+  .btn:hover{background:transparent; color:var(--black);}
+  .btn:focus-visible, a:focus-visible{outline:2px solid var(--crimson); outline-offset:3px;}
+  .price-note{font-size:12px; color:#a9a7a1; letter-spacing:0.04em;}
+  .hero .btn{background:var(--off-white); color:var(--black); border-color:var(--off-white);}
+  .hero .btn:hover{background:transparent; color:var(--off-white);}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{position:relative; z-index:1; padding:96px 0;}
+  section:not(.hero):not(.final){
+    background:var(--off-white);
+    margin:28px auto;
+    max-width:1040px;
+    border-radius:6px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.4);
+  }
+  section.final{margin:28px auto 0; max-width:1040px; border-radius:6px 6px 0 0;}
+  .rule{width:100%; height:1px; background:var(--grey-line); margin-bottom:56px;}
+  .kicker-line{
+    display:flex; align-items:center; gap:14px; margin-bottom:26px;
+    font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--crimson); font-weight:600;
+  }
+  .kicker-line .num{font-family:'Bodoni Moda', serif; font-style:italic; font-size:16px; color:var(--black);}
+  h2.title{
+    font-size:clamp(30px,3.6vw,44px); font-weight:500; letter-spacing:-0.01em;
+    max-width:680px; margin-bottom:8px;
+  }
+
+  /* ---------- STORY: MAGAZINE SPREAD ---------- */
+  .spread{display:grid; grid-template-columns:0.9fr 1.5fr; gap:56px; margin-top:44px;}
+  .spread .lede{font-size:19px; line-height:1.65; font-weight:400;}
+  .spread .lede::first-letter{
+    font-family:'Bodoni Moda', serif; font-size:64px; float:left; line-height:0.8;
+    padding-right:10px; padding-top:6px; color:var(--crimson); font-weight:600;
+  }
+  .marginalia{border-left:1px solid var(--grey-line); padding-left:28px;}
+  .tl-item{padding:0 0 22px; margin-bottom:22px; border-bottom:1px solid var(--grey-line);}
+  .tl-item:last-child{border-bottom:none; margin-bottom:0;}
+  .tl-age{font-family:'Bodoni Moda', serif; font-style:italic; font-size:14px; color:var(--crimson); margin-bottom:4px;}
+  .tl-item b{display:block; font-size:14.5px; letter-spacing:0.01em; margin-bottom:4px;}
+  .tl-item p{margin:0; font-size:13.5px; color:var(--grey);}
+
+  .pull-quote{
+    margin-top:56px; padding:0; border-top:1px solid var(--black); border-bottom:1px solid var(--black);
+    padding:34px 0; text-align:center;
+  }
+  .pull-quote p{
+    font-family:'Bodoni Moda', serif; font-style:italic; font-size:clamp(22px,2.6vw,30px);
+    max-width:760px; margin:0 auto; line-height:1.4;
+  }
+
+  /* ---------- SYMPTOMS ---------- */
+  .symptoms-list{margin-top:44px; display:grid; gap:0;}
+  .symptom-row{
+    display:grid; grid-template-columns:60px 1fr; gap:24px; align-items:baseline;
+    padding:22px 0; border-bottom:1px solid var(--grey-line);
+  }
+  .symptom-row:first-child{border-top:1px solid var(--grey-line);}
+  .symptom-row .num{font-family:'Bodoni Moda', serif; font-style:italic; font-size:20px; color:var(--crimson);}
+  .symptom-row p{margin:0; font-size:17px;}
+
+  /* ---------- PROGRAM: TABLE OF CONTENTS ---------- */
+  .toc{margin-top:44px;}
+  .toc-row{
+    display:grid; grid-template-columns:50px 1fr auto; gap:22px; align-items:baseline;
+    padding:24px 0; border-bottom:1px solid var(--grey-line);
+  }
+  .toc-row:first-child{border-top:1px solid var(--grey-line);}
+  .toc-num{font-family:'Bodoni Moda', serif; font-style:italic; font-size:20px; color:var(--grey);}
+  .toc-body h3{font-size:19px; font-weight:500; margin-bottom:6px;}
+  .toc-body p{margin:0; font-size:14.5px; color:var(--grey); max-width:520px;}
+  .toc-days{font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--crimson); white-space:nowrap;}
+
+  /* ---------- PRICE BLOCK ---------- */
+  .price-block{
+    margin-top:44px; display:grid; grid-template-columns:1fr 1fr; gap:0;
+    border:1px solid var(--black);
+  }
+  .price-left{padding:44px; border-right:1px solid var(--black);}
+  .price-left .compare{font-size:14px; color:var(--grey); margin-bottom:18px;}
+  .price-left .compare b{color:var(--black);}
+  .price-right{padding:44px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;}
+  .price-figure{font-family:'Bodoni Moda', serif; font-size:64px; font-weight:600; line-height:1;}
+  .price-figure sup{font-size:22px; vertical-align:super; margin-left:4px;}
+  .price-includes{list-style:none; padding:0; margin:18px 0 0; font-size:13.5px; color:var(--grey);}
+  .price-includes li{padding:5px 0;}
+  .price-includes li::before{content:"— ";}
+
+  /* ---------- FINAL ---------- */
+  .final{background:var(--black); color:var(--off-white); text-align:center;}
+  .final h2{
+    font-size:clamp(34px,5vw,58px); font-weight:500; max-width:760px; margin:0 auto 22px; line-height:1.05;
+  }
+  .final .sub{color:#b9b6ae; max-width:460px; margin:0 auto 40px; font-size:16px;}
+  .final .btn{background:var(--off-white); color:var(--black); border-color:var(--off-white);}
+  .final .btn:hover{background:transparent; color:var(--off-white);}
+
+  footer{
+    position:relative; z-index:1;
+    padding:32px 0; text-align:center; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:#a9a7a1;
+  }
+
+  /* ---------- TELEGRAM BUTTON ---------- */
+  #tg-button{
+    position:fixed; bottom:24px; right:24px; z-index:50;
+    display:flex; align-items:center; gap:10px;
+    background:var(--crimson); border:1px solid var(--crimson); color:var(--off-white);
+    padding:14px 22px; text-decoration:none;
+    font-family:'Inter', sans-serif; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; font-weight:600;
+    box-shadow:0 6px 18px rgba(0,0,0,0.2);
+  }
+  #tg-button:hover{background:#8a2024; border-color:#8a2024;}
+  #tg-button:focus-visible{outline:2px solid var(--black); outline-offset:3px;}
+  #tg-button svg{width:18px;height:18px;flex:none;}
+
+  @media (max-width:800px){
+    .hero-grid{grid-template-columns:1fr; min-height:auto;}
+    .hero-photo{height:340px; margin:0 24px 8px;}
+    .hero-text{padding:48px 28px;}
+    section:not(.hero):not(.final){margin:18px 12px;}
+    section.final{margin:18px 12px 0;}
+    .spread{grid-template-columns:1fr;}
+    .marginalia{border-left:none; border-top:1px solid var(--grey-line); padding-left:0; padding-top:24px;}
+    .price-block{grid-template-columns:1fr;}
+    .price-left{border-right:none; border-bottom:1px solid var(--black);}
+    .toc-row{grid-template-columns:40px 1fr; }
+    .toc-days{grid-column:2; }
+  }
+  @media (max-width:640px){
+    section{padding:64px 0;}
+    #tg-button{right:16px; bottom:16px; padding:12px 16px; font-size:12px;}
+  }
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+  <div class="scene-bg">
+    <svg viewBox="0 0 1200 700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="0,700 0,420 140,220 260,340 400,150 520,320 650,180 780,360 900,230 1050,380 1200,260 1200,700" fill="#3a3d43" opacity="0.55"/>
+      <polygon points="0,700 0,500 90,400 220,480 340,320 470,470 600,340 730,490 860,360 1000,500 1200,410 1200,700" fill="#26282d" opacity="0.75"/>
+      <polygon points="0,700 0,580 160,470 320,560 480,430 640,560 800,450 960,570 1120,460 1200,520 1200,700" fill="#141517" opacity="0.95"/>
+    </svg>
+  </div>
+  <div class="scene-fade"></div>
+
+  <div class="masthead">
+    <span>Личная программа трансформации</span>
+    <span class="issue">№ 30 / 1999</span>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="kicker">30 дней · без воды</div>
+        <h1>Дискомфорт — <em>твоя точка роста</em></h1>
+        <p class="sub">30 дней, которые изменят тебя. Только факты и процесс трансформации.</p>
+        <div class="cta-row">
+          <a href="https://t.me/Alexsiop" class="btn" target="_blank" rel="noopener">Записаться на старт</a>
+          <span class="price-note">1999 ₽ · консультация в подарок</span>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="assets/hero-editorial.jpeg" alt="Автор программы">
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="wrap">
+      <div class="kicker-line"><span class="num">01</span><span>Личная история</span></div>
+      <h2 class="title">С чего всё началось — и почему я знаю, о чём говорю</h2>
+
+      <div class="spread">
+        <div class="lede">
+          В 18 меня забрали в армию. В 24 — я стоял на распутье: во внутренние войска не взяли, а из страны, где успел стать своим, пришлось уехать. Без денег. Без связей. Без плана «Б». Я приехал в чужой город и начал с фасовщика на складе — а дальше всё изменилось быстрее, чем я ожидал.
+        </div>
+        <div class="marginalia">
+          <div class="tl-item"><div class="tl-age">+2 недели</div><b>Фасовщик → бригадир</b><p>Взял ответственность, когда другие не хотели.</p></div>
+          <div class="tl-item"><div class="tl-age">+2 месяца</div><b>Администратор 5 проектов</b><p>Инициатива — доверили целое направление.</p></div>
+          <div class="tl-item"><div class="tl-age">дальше</div><b>HR, вахта, продажи, стройка</b><p>Падения в доход, поиск себя заново — не один раз.</p></div>
+          <div class="tl-item"><div class="tl-age">сегодня</div><b>Лидер, наставник, автор программы</b><p>Консультации, рост в сетевом бизнесе.</p></div>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        <p>«Не думать, что будет дальше — просто брать и делать. Это единственное, что вытаскивало меня каждый раз».</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYMPTOMS -->
+  <section id="symptoms" style="padding-top:0;">
+    <div class="wrap">
+      <div class="kicker-line"><span class="num">02</span><span>Узнаёшь себя?</span></div>
+      <h2 class="title">Дело не в мотивации. Дело в структуре</h2>
+      <div class="symptoms-list">
+        <div class="symptom-row"><span class="num">01</span><p>Работаешь не там, где хочешь, — но не знаешь, с чего начать менять</p></div>
+        <div class="symptom-row"><span class="num">02</span><p>Застрял на месте: вроде можешь больше, а движения нет</p></div>
+        <div class="symptom-row"><span class="num">03</span><p>Сомневаешься в себе чаще, чем действуешь</p></div>
+        <div class="symptom-row"><span class="num">04</span><p>Пробовал сам — не хватило структуры и сопровождения, чтобы довести до конца</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM -->
+  <section id="program" style="padding-top:0;">
+    <div class="wrap">
+      <div class="kicker-line"><span class="num">03</span><span>Содержание</span></div>
+      <h2 class="title">30 дней. 7 направлений. Один процесс трансформации</h2>
+      <div class="toc">
+        <div class="toc-row"><span class="toc-num">01</span><div class="toc-body"><h3>Тело и физическая сила</h3><p>Рабочая схема тренировок и питания — даже если генетика «не твоя».</p></div><span class="toc-days">Дни 1–5</span></div>
+        <div class="toc-row"><span class="toc-num">02</span><div class="toc-body"><h3>Ментальная сила и привычки</h3><p>Дисциплина вместо мотивации, работа с ленью и фокусом.</p></div><span class="toc-days">Дни 6–9</span></div>
+        <div class="toc-row"><span class="toc-num">03</span><div class="toc-body"><h3>Личные границы</h3><p>Как говорить «нет» и выбирать окружение, которое усиливает.</p></div><span class="toc-days">Дни 10–12</span></div>
+        <div class="toc-row"><span class="toc-num">04</span><div class="toc-body"><h3>Финансовая грамотность</h3><p>Ценность времени, отношение к деньгам, первая подушка.</p></div><span class="toc-days">Дни 13–16</span></div>
+        <div class="toc-row"><span class="toc-num">05</span><div class="toc-body"><h3>Цели и декомпозиция</h3><p>От «хочу» до пошагового плана, который выполняется.</p></div><span class="toc-days">Дни 17–20</span></div>
+        <div class="toc-row"><span class="toc-num">06</span><div class="toc-body"><h3>Отношения</h3><p>Начни с себя — без иллюзий и ожидания, что изменится другой.</p></div><span class="toc-days">Дни 21–24</span></div>
+        <div class="toc-row"><span class="toc-num">07</span><div class="toc-body"><h3>Хард-скиллы и карьера</h3><p>Инициатива, обучение на ходу, монетизация того, что нравится.</p></div><span class="toc-days">Дни 25–29</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICE -->
+  <section id="invoice" style="padding-top:0;">
+    <div class="wrap">
+      <div class="kicker-line"><span class="num">04</span><span>Условия участия</span></div>
+      <h2 class="title">Один сеанс у психолога — или 30 дней работы с сопровождением</h2>
+      <div class="price-block">
+        <div class="price-left">
+          <div class="compare">Разовый сеанс у психолога стоит <b>столько же или дороже</b> — здесь 30 дней разборов и практик вместо одной встречи.</div>
+          <div class="compare">Время идёт, а вместе с ним — и возможности. Сегодня одна из них — перед тобой.</div>
+        </div>
+        <div class="price-right">
+          <div class="price-figure">1999<sup>₽</sup></div>
+          <ul class="price-includes">
+            <li>Вводная консультация — в подарок</li>
+            <li>30-дневная программа, 7 блоков</li>
+            <li>Разборы и практики каждый день</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final">
+    <div class="wrap">
+      <h2>Время идёт — а с ним и возможности</h2>
+      <p class="sub">Начни путь от точки застоя к жизни, которую выбираешь сам.</p>
+      <a href="https://t.me/Alexsiop" class="btn" target="_blank" rel="noopener">Записаться — 1999 ₽</a>
+    </div>
+  </section>
+
+  <footer>«Дискомфорт — это твоя точка роста» · программа трансформации на 30 дней</footer>
+
+  <a id="tg-button" href="https://t.me/Alexsiop" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.6 18.7 20.1c-.24 1.08-.88 1.34-1.78.84l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.98.48l.35-4.98L18.4 6.9c.4-.35-.09-.55-.62-.2L7.4 13.5l-4.9-1.53c-1.06-.33-1.08-1.06.22-1.57L20.6 3.6c.88-.33 1.65.2 1.34 1z"/></svg>
+    Написать в Telegram
+  </a>
+
+</body>
+</html>
